@@ -20,22 +20,23 @@ public class Banking {
 			int bankaccount = 0, bankaccount2 = 0, bankaccount3 = 0, bankaccount4 = 0;
 			do{
 			bankname = JOptionPane.showInputDialog("Name of the Bank");
-			if(bankname.isEmpty())
+			if(bankname.isEmpty() || bankname.equals(" "))
 					JOptionPane.showMessageDialog(null, "Error");
 			else
 				bankaccount++;
 			}while(bankaccount == 0);
 			do{
 			description = JOptionPane.showInputDialog("Description of the Bank");
-			if(description.isEmpty())
+			if(description.isEmpty() || description.equals(" "))
 				JOptionPane.showMessageDialog(null, "Error");
 			else
 				bankaccount2++;
 			}while(bankaccount2 == 0);
 			do{
 			branch = JOptionPane.showInputDialog("From Which Branch?");
-			if(branch.isEmpty())
+			if(branch.isEmpty() || branch.equals(" "))
 				JOptionPane.showMessageDialog(null, "Error");
+			
 			else
 			{
 				bankaccount3++;
@@ -43,7 +44,7 @@ public class Banking {
 			}while(bankaccount3 == 0);
 			do{
 			bankadd = JOptionPane.showInputDialog("Address of the Bank");
-			if(bankadd.isEmpty())
+			if(bankadd.isEmpty() || bankadd.equals(" "))
 				JOptionPane.showMessageDialog(null, "Error");
 			else
 				{
@@ -65,7 +66,6 @@ public class Banking {
 						{*/
 						vBank.lastBank = vBank.firstBank.nextBank = bankvariable;
 						vBank.lastBank.nextBank = null;
-						//}
 			}
 			else
 			{
@@ -79,12 +79,12 @@ public class Banking {
 				continue;
 			if(x == JOptionPane.NO_OPTION)
 				System.exit(0);
-		}
+		}//END BANKS
 		
 		//ACOUNTS ================================================================================================================================
 		if(choose == 2)
 		{	
-			int m = 0;
+			int m = 0, bankaccount = 0, bankaccount2 = 0, bankaccount3 = 0, bankaccount4 = 0;
 			if(vBank.firstBank == null)
 				JOptionPane.showMessageDialog(null, "List of Banks is Empty");
 			else
@@ -130,9 +130,11 @@ public class Banking {
 			}
 			}while(t == 0);
 			}
-			String name = JOptionPane.showInputDialog("Enter Your Name");
+			String lastname = JOptionPane.showInputDialog("Enter Your Lastname");
+			String givenname = JOptionPane.showInputDialog("Enter Your Firstname");
+			String middlename = JOptionPane.showInputDialog("Enter Your Middlename");
 			String address = JOptionPane.showInputDialog("Enter Your Address");
-			String birthday = JOptionPane.showInputDialog("Enter Birth Date");
+			String birthday = JOptionPane.showInputDialog("Enter Birth Date", "YYYY-MM-DD");
 			do{
 			String deposit = JOptionPane.showInputDialog("Enter Amount of Deposit");
 			deposit2 = Integer.parseInt(deposit);
@@ -141,7 +143,7 @@ public class Banking {
 			else
 				t2++;
 			}while(t2 == 0);
-			Info variable = new Info(number, name, address, birthday, deposit2, bank);
+			Info variable = new Info(number, lastname, givenname, middlename, address, birthday, deposit2, bank);
 			if(vList.firstNode==null)
 			{
 				vList.firstNode = vList.lastNode = variable;
@@ -158,7 +160,7 @@ public class Banking {
 				vList.lastNode = variable;
 				vList.lastNode.nextInfo = null;
 			}
-			JOptionPane.showMessageDialog(null, "This is Your Information: \nAcount Number: "+number+"\nName: "+name+"\nAddress: "+address+"\nBirthday: "+birthday+"\nDeposit: "+deposit2+ 
+			JOptionPane.showMessageDialog(null, "This is Your Information: \nAcount Number: "+number+"\nName: "+lastname+", " +givenname+ " "+middlename+ "\nAddress: "+address+"\nBirthday: "+birthday+"\nDeposit: "+deposit2+ 
 					"\n \nBank Information: \nBankname:" +mark.bankname1+ "\nDescription:" +mark.description1+ "\nBranch: " +mark.branch1+ "\nAddress: " +mark.bankadd1);
 			}
 			int x = JOptionPane.showConfirmDialog(null, "Do You Have Other Transaction","Confirm Message",JOptionPane.YES_NO_OPTION);
@@ -166,7 +168,7 @@ public class Banking {
 				continue;
 			if(x == JOptionPane.NO_OPTION)
 				System.exit(0);
-		}
+		}//END ACCOUNTS
 		
 		// DEPOSIT================================================================================================================================
 		if(choose == 3)
@@ -213,7 +215,7 @@ public class Banking {
 				continue;
 			if(x == JOptionPane.NO_OPTION)
 				System.exit(0);
-		}
+		}//END DEPOSIT
 		
 		// WITHDRAW================================================================================================================================
 		if(choose == 4)
@@ -271,7 +273,7 @@ public class Banking {
 				continue;
 			if(x == JOptionPane.NO_OPTION)
 				System.exit(0);
-		}
+		}//END WITHDRAW
 		
 		//PRINT ================================================================================================================================
 		if(choose == 5){
@@ -290,7 +292,7 @@ public class Banking {
 				{
 					if(number==marker.number1)
 						{
-						JOptionPane.showMessageDialog(null, "Account Number: " +marker.number1+ "\nName: " +marker.name1+ "\nBalance: " +marker.deposit1+ "\nBank: " +marker.banknameInfo1.bankname1);
+						JOptionPane.showMessageDialog(null, "Account Number: " +marker.number1+ "\nName: " +marker.lastname1+ ", " +marker.givenname1+ " "+marker.middlename1+ "\nBalance: " +marker.deposit1+ "\nBank: " +marker.banknameInfo1.bankname1);
 						int x = JOptionPane.showConfirmDialog(null, "Do You Have Other Transaction","Confirm Message",JOptionPane.YES_NO_OPTION);
 						if(x == JOptionPane.YES_OPTION)
 							t++;
@@ -303,8 +305,7 @@ public class Banking {
 				}while(t == 0);
 				}
 				}while(t == 0);
-		}
-		
+		}//END PRINT
 		}catch(Throwable wew){
 			JOptionPane.showMessageDialog(null, "Invalid Input");
 		}

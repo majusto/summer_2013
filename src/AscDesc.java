@@ -12,7 +12,6 @@ public class AscDesc{
 		int b = Integer.parseInt(c);
 		array[d] = b;
 		}
-		int m = 0;
 		for(int q = 0; q<array.length-1; q++)
 		{
 			if((array[q]<array[q+1]))
